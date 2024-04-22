@@ -1,0 +1,46 @@
+name: run testing
+
+on:
+  push:
+    branches:
+      - main  
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: set up python
+      uses: actions/setup-python@v5
+
+    - name: upgrade pip
+      working-directory: ./myMiniCanvas-abrizu/
+      run: python -m pip install --upgrade pip
+      
+    - name: install dependencies
+      run: pip install -r requirements.txt
+
+    - name: run assignment
+      run: |
+        python3 assignment.py
+        python3 test_assignment.py
+
+    - name: run course
+      run: |
+        python3 course.py
+        python3 test_course.py
+
+    - name: run main
+      run: |
+        python3 main.py
+        python3 test_main.py
+
+    - name: run user
+      run: |
+        python3 user.py
+        python3 test_user.py
+
+    - name: test all
+      run: pytest --cov
