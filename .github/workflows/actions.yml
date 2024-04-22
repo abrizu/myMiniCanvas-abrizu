@@ -21,7 +21,7 @@ jobs:
     - name: install dependencies
       run: | 
         pip install -r requirements.txt
-        pip install pytest fastapi uvicorn pytest-asyncio httpx pydantic
+        pip install pytest pytest-cov fastapi uvicorn pytest-asyncio httpx pydantic
 
     - name: run assignment
       run: |
