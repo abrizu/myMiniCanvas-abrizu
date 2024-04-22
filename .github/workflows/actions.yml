@@ -19,7 +19,9 @@ jobs:
       run: python -m pip install --upgrade pip
       
     - name: install dependencies
-      run: pip install -r requirements.txt
+      run: | 
+        pip install -r requirements.txt
+        pip install pytest fastapi uvicorn pytest-asyncio httpx
 
     - name: run assignment
       run: |
@@ -34,6 +36,7 @@ jobs:
     - name: run main
       run: |
         python3 main.py
+        uvicorn main:app --reload
         python3 test_main.py
 
     - name: run user
