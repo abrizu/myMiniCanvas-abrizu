@@ -5,7 +5,7 @@ class Assignment:
         self.course_id = course_id
         self.submission_list = []
 
-    def submit(self, submission):
+    def submit(self, submission):  
         self.submission_list.append(submission)
 
 class Submission:
