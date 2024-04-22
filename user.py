@@ -20,7 +20,7 @@ class UserManager:
         
         return users_found
 
-class User():
+class User:
     def __init__(self, user_id: int, name: str, password: str, type: str):
         self.user_id = user_id
         self.name = name

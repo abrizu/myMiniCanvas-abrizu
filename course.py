@@ -6,6 +6,17 @@ class CourseManager:
         self.counter = 0
 
     def create_a_course(self, course_code, semester, teacher_list):
+
+        # Handles empty course / invalid inputs
+        if not course_code:
+            raise ValueError("Invalid course code")
+        
+        if not semester:
+            raise ValueError("Invalid semester code")
+
+        if not teacher_list:
+            raise ValueError("Invalid teacher list")
+        
         ## automatically generate a courseId
         new_course_id = self.generate_id()
         new_course = Course(new_course_id, course_code, semester, teacher_list)
@@ -42,8 +53,12 @@ class Course:
         self.module_list = []
         self.assignment_counter = 0
 
-    def import_students(self, student_list):
+    def import_students(self, user, student_list):
         # the admin should import the students to a course
+
+        if user.type != 'admin':
+            raise PermissionError("Only admin users can import students.")
+        
         self.student_list = student_list
     
     def create_an_assignment(self, due_date):
