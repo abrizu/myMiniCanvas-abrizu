@@ -36,8 +36,11 @@ jobs:
     - name: run main
       run: |
         python3 main.py
-        uvicorn main:app --host 0.0.0.0 --port 8000
-    - run: python3 test_main.py
+        uvicorn main:app --host 0.0.0.0 --port 8000 &
+        sleep 10 
+
+    - name: run test_main
+      run: python3 test_main.py
 
     - name: run user
       run: |
